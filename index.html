@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#103d31">
+    <title>Split the Bill</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="bill-card" aria-labelledby="page-title">
+        <div class="card-heading">
+          <p class="eyebrow">A little easier, together</p>
+          <h1 id="page-title">Split the Bill<span>.</span></h1>
+          <p class="intro">Add the details and leave the maths to us.</p>
+        </div>
+
+        <form id="split-form" novalidate>
+          <div class="field-group">
+            <label for="bill-amount">Bill amount</label>
+            <div class="input-wrap">
+              <span class="input-affix" aria-hidden="true">₦</span>
+              <input
+                id="bill-amount"
+                name="billAmount"
+                type="number"
+                min="0"
+                step="any"
+                inputmode="decimal"
+                placeholder="0.00"
+                autocomplete="off"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="tip-percent">Tip</label>
+              <div class="input-wrap">
+                <input
+                  id="tip-percent"
+                  name="tipPercent"
+                  type="number"
+                  min="0"
+                  step="any"
+                  inputmode="decimal"
+                  placeholder="10"
+                  autocomplete="off"
+                  required
+                >
+                <span class="input-affix input-affix-end" aria-hidden="true">%</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="people-count">People</label>
+              <div class="input-wrap">
+                <input
+                  id="people-count"
+                  name="peopleCount"
+                  type="number"
+                  min="1"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="2"
+                  autocomplete="off"
+                  required
+                >
+              </div>
+            </div>
+          </div>
+
+          <button type="submit">Calculate</button>
+          <p class="form-message" id="form-message" role="alert" aria-atomic="true"></p>
+        </form>
+
+        <section class="results" id="results" aria-labelledby="results-title" aria-live="polite" hidden>
+          <h2 id="results-title">Here’s the breakdown</h2>
+          <dl class="result-list">
+            <div class="result-row">
+              <dt>Tip amount</dt>
+              <dd id="tip-result">₦0.00</dd>
+            </div>
+            <div class="result-row">
+              <dt>Total bill</dt>
+              <dd id="total-result">₦0.00</dd>
+            </div>
+          </dl>
+          <div class="share-result">
+            <p>Each person pays</p>
+            <output id="share-result" for="bill-amount tip-percent people-count">₦0.00</output>
+          </div>
+        </section>
+
+        <p class="card-footnote"><span aria-hidden="true">✳</span> Good company. Clear maths.</p>
+      </section>
+    </main>
+  </body>
+</html>
