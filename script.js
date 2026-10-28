@@ -7,10 +7,31 @@ const results = document.querySelector("#results");
 const tipResult = document.querySelector("#tip-result");
 const totalResult = document.querySelector("#total-result");
 const shareResult = document.querySelector("#share-result");
+const themeToggle = document.querySelector("#theme-toggle");
+const themeStorageKey = "splitBillTheme";
 
 const amountFormatter = new Intl.NumberFormat("en-NG", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
+});
+
+function setTheme(theme) {
+  const isDark = theme === "dark";
+  document.body.dataset.theme = isDark ? "dark" : "light";
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+  themeToggle.setAttribute(
+    "aria-label",
+    `Switch to ${isDark ? "light" : "dark"} mode`,
+  );
+  themeToggle.querySelector("span").textContent = isDark ? "☀" : "☾";
+}
+
+setTheme(localStorage.getItem(themeStorageKey) === "dark" ? "dark" : "light");
+
+themeToggle.addEventListener("click", () => {
+  const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+  setTheme(nextTheme);
+  localStorage.setItem(themeStorageKey, nextTheme);
 });
 
 function formatNaira(amount) {
